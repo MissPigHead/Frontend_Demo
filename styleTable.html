@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="favicon.ico"
+      type="image/vnd.microsoft.icon"
+    />
+    <title>Table</title>
+    <style>
+      .box {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        font-size: 18px;
+      }
+
+      h2 {
+        color: #0d5071;
+        font-family: "Langar", cursive;
+        font-size: 2rem;
+        font-weight: 700;
+        margin: 0.8rem 0 0.3rem 0;
+      }
+
+      .box > br {
+        width: 100%;
+        content: "";
+      }
+
+      .table {
+        border-collapse: collapse;
+        width: 95%;
+        table-layout: fixed;
+        border: 0;
+        border-spacing: 0;
+        border-color: rgb(255, 0, 0);
+        color: #222;
+        font-family: "Viga", sans-serif;
+      }
+
+      td {
+        height: 3rem;
+        text-align: center;
+        vertical-align: top;
+        padding: 0.5rem 0 0.5rem 0;
+      }
+
+      th {
+        height: 3rem;
+        text-align: center;
+        border-bottom: 2px solid #dee2e6;
+        background: #75cbd9;
+        font-family: "Langar", cursive;
+        font-weight: 800;
+        color: #0a3a52;
+      }
+
+      .holidayName {
+        line-height: 0.85rem;
+        font-family: "Langar", cursive;
+        font-size: 0.5rem;
+        font-weight: 500;
+        color: #dc3545;
+      }
+
+      td.tdHolidays {
+        box-shadow: inset 0 0 10px 3px rgba(230, 148, 172, 0.5);
+      }
+
+      td.tdHolidays:hover {
+        min-width: 5rem;
+        max-width: 5rem;
+        transform: translateX(10%) scale(2);
+        padding: 0.2rem 0.5rem 1rem 0.5rem;
+        background: rgba(240, 150, 150, 70%);
+        border-radius: 0.2rem;
+        box-shadow: inset 0 0 10px 0px #e05a5a;
+        position: absolute;
+        margin: 0 auto;
+        z-index: 1;
+      }
+
+      .tred {
+        color: #dc3545;
+      }
+
+      .tgreen {
+        color: #0d701b;
+      }
+
+      .fbold {
+        font-weight: 800;
+      }
+
+      @media (min-width: 700px) {
+        .table {
+          width: 600px;
+        }
+        .holidayName {
+          font-size: 0.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Langar&family=Viga&display=swap"
+      rel="stylesheet"
+    />
+    <div class="box">
+      <h2>December</h2>
+      <br />
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="tred">Sun</th>
+            <th>Mon</th>
+            <th>Tue</th>
+            <th>Wed</th>
+            <th>Thur</th>
+            <th>Fri</th>
+            <th class="tgreen fbold">Sat</th>
+          </tr>
+        </thead>
+        <tbody class="table">
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td valign:top class="tdbg">1</td>
+            <td class="tdbg">2</td>
+            <td class="tdbg">3</td>
+            <td class="tdbg">4</td>
+            <td class="tdbg tgreen fbold">5</td>
+          </tr>
+          <tr>
+            <td class="tdbg tred fbold">6</td>
+            <td class="tdbg">7</td>
+            <td class="tdbg">8</td>
+            <td class="tdbg">9</td>
+            <td class="tdbg">10</td>
+            <td class="tdbg">11</td>
+            <td class="tdbg tgreen fbold">12</td>
+          </tr>
+          <tr>
+            <td class="tdbg tred fbold">13</td>
+            <td class="tdbg">14</td>
+            <td class="tdbg">15</td>
+            <td class="tdbg">16</td>
+            <td class="tdbg">17</td>
+            <td class="tdbg">18</td>
+            <td class="tdbg tgreen fbold">19</td>
+          </tr>
+          <tr>
+            <td class="tdbg tred fbold">20</td>
+            <td class="tdbg">21</td>
+            <td class="tdbg">22</td>
+            <td class="tdbg">23</td>
+            <td class="tdbg">24</td>
+            <td class="tdHolidays tdbg">
+              25
+              <div class="holidayName">Merry Christmas!</div>
+            </td>
+            <td class="tdbg tgreen fbold">26</td>
+          </tr>
+          <tr>
+            <td class="tdbg tred fbold">27</td>
+            <td class="tdbg">28</td>
+            <td class="tdbg">29</td>
+            <td class="tdbg">30</td>
+            <td class="tdbg">31</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
+  <title>Mandala Clock</title>
+  <style>
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #200025;
+    }
+
+    #clcF,
+    #hr,
+    #min,
+    #sec,
+    #point {
+      width: 500px;
+      height: 500px;
+    }
+
+    #clcF {
+      background: url("img/mandala-f_500.png");
+      position: relative;
+      border-radius: 50%;
+      box-shadow: 0 0 40px 0 rgba(240,240,160,0.8);
+    }
+
+    #hr {
+      background: url("img/mandala-h_500.png");
+      position: absolute;
+    }
+
+    #min {
+      background: url("img/mandala-m_500.png");
+      position: absolute;
+    }
+
+    #sec {
+      background: url("img/mandala-s_500.png");
+      position: absolute;
+    }
+    #point{
+      background: url("img/mandala-p_500.png");
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="clcF">
+    <div id="hr"></div>
+    <div id="min"></div>
+    <div id="sec"></div>
+    <div id="point"></div>
+  </div>
+
+  <script>
+    const nt = new Date()
+
+    const degH = nt.getHours() * 30 + nt.getMinutes() * 0.5
+    const degM = nt.getMinutes() * 6 + nt.getSeconds() * .1
+    const degS = nt.getSeconds() * 6
+
+    document.getElementById("hr").style.transform=`rotate(${degH}deg)`
+    document.getElementById("min").style.transform=`rotate(${degM}deg)`
+    document.getElementById("sec").style.transform=`rotate(${degS}deg)`
+
+    const loop=setInterval(()=>{
+      const time=new Date()
+
+      const degH2 = time.getHours() * 30 + time.getMinutes() * 0.5
+      const degM2 = time.getMinutes() * 6 + time.getSeconds() * .1
+      const degS2 = time.getSeconds() * 6
+
+      document.getElementById("hr").style.transform=`rotate(${degH2}deg)`
+      document.getElementById("min").style.transform=`rotate(${degM2}deg)`
+      document.getElementById("sec").style.transform=`rotate(${degS2}deg)`
+    },1000)
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
+    <title>Fireworks</title>
+    <style>
+        body {
+            margin: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(#dff, #dfd);
+        }
+
+        .elephant,
+        .fireworks {
+            width: 640px;
+            height: 400px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .elephant {
+            animation: eleAni 10s 0.6s ease infinite;
+        }
+
+        .nose,
+        .tail {
+            width: 5%;
+            height: 4.8%;
+            border-radius: 0 0 50% 50%/0 0 100% 100%;
+            border: 32px #666 solid;
+            border-top: none;
+            top: 66%;
+            left: 62.3%;
+            position: absolute;
+        }
+
+        .nose::before,
+        .nose::after {
+            content: '';
+            width: 50%;
+            height: 100%;
+            background: #666;
+            border-radius: 50%;
+            position: absolute;
+            left: -50%;
+            top: -44%;
+        }
+
+        .nose::after {
+            left: -100%;
+        }
+
+        .head {
+            width: 16%;
+            height: 22%;
+            background: #666;
+            border-radius: 38% 35% 25% 46% / 50% 51% 46% 50%;
+            top: 58%;
+            left: 72%;
+            position: absolute;
+        }
+
+        .eye,
+        .eye::after {
+            width: 20%;
+            height: 28%;
+            background: #fefefe;
+            border-radius: 50%;
+            top: 20%;
+            left: 25%;
+            position: absolute;
+        }
+
+        .eye::after {
+            content: '';
+            width: 30%;
+            background: #222;
+            top: 70%;
+            animation: eyeAni 10s 0.7s ease infinite;
+        }
+
+        .ear {
+            width: 11%;
+            height: 24%;
+            background: linear-gradient(90deg, #666, #000);
+            border-radius: 80% 20% 25% 75% / 10% 25% 75% 45%;
+            top: 57%;
+            left: 80%;
+            position: absolute;
+        }
+
+        .leg {
+            width: 8%;
+            height: 6%;
+            background: linear-gradient(#666, #000);
+            top: 93.9%;
+            left: 90%;
+            position: absolute;
+        }
+
+        .leg::before,
+        .leg::after {
+            content: '';
+            width: 50%;
+            height: 30%;
+            border-radius: 50% 50% 0 0/100% 100% 0 0;
+            background: #ff0;
+            top: 70%;
+            position: absolute;
+        }
+
+        .leg::after {
+            left: 50%;
+        }
+
+        .legF {
+            transform: rotate(20deg);
+            top: 91%;
+            left: 74.65%;
+        }
+
+        .belly,
+        .belly::after {
+            width: 18%;
+            height: 18%;
+            background: #666;
+            border-radius: 0 40% 0 0;
+            top: 76%;
+            left: 80%;
+            position: absolute;
+        }
+
+        .belly::after {
+            content: '';
+            width: 40%;
+            height: 100%;
+            transform: skewX(-20deg);
+            top: 0;
+            left: -20%;
+        }
+
+        .tail {
+            border: 10px #666 solid;
+            border-top: none;
+            top: 78%;
+            left: 93%;
+        }
+
+        .shadow {
+            width: 40%;
+            height: 6%;
+            background: radial-gradient(ellipse at center, #666, transparent 60%);
+            bottom: -3%;
+            right: -5%;
+            position: absolute;
+            animation: shAni 10s 0.6s ease infinite;
+        }
+
+        .fire1,
+        .fire2,
+        .fire3 {
+            width: 20%;
+            height: 32%;
+            border-radius: 50%;
+            border: 4px rgba(255, 100, 60, 0.7) dotted;
+            box-shadow: 0 0 20px 12px rgba(255, 150, 100, 0.6);
+            transform: scale(0);
+            top: 57%;
+            left: 56%;
+            position: absolute;
+            box-sizing: border-box;
+        }
+
+        .fire2 {
+            border: rgba(120, 120, 255, 0.6) dotted;
+            box-shadow: 0 0 20px 12px rgba(120, 120, 255, 0.5);
+            left: 45%;
+        }
+
+        .fire3 {
+            border: rgba(60, 255, 200, 0.6) dotted;
+            box-shadow: 0 0 20px 12px rgba(60, 255, 200, 0.5);
+            left: 27%;
+            top: 28%;
+        }
+
+        .fire1::before,
+        .fire2::before,
+        .fire3::before {
+            content: '';
+            width: 130%;
+            height: 130%;
+            border-radius: 50%;
+            border: 5px rgba(255, 120, 120, 0.7) dotted;
+            box-shadow: 0 0 30px 15px rgba(255, 120, 120, 0.6);
+            top: -15%;
+            right: -15%;
+            position: absolute;
+            box-sizing: border-box;
+        }
+
+        .fire2::before {
+            border: rgba(255, 80, 255, 0.6) dotted;
+            box-shadow: 0 0 30px 15px rgba(255, 80, 255, 0.5);
+        }
+
+        .fire3::before {
+            border: rgba(30, 200, 255, 0.6) dotted;
+            box-shadow: 0 0 30px 15px rgba(30, 200, 255, 0.5);
+        }
+
+        .fire1::after,
+        .fire2::after,
+        .fire3::after {
+            content: '';
+            width: 80%;
+            height: 80%;
+            border-radius: 50%;
+            border: 4px rgba(255, 190, 10, 0.7) dotted;
+            box-shadow: 0 0 15px 8px rgba(255, 190, 10, 0.6);
+            top: 10%;
+            right: 10%;
+            position: absolute;
+            box-sizing: border-box;
+        }
+
+        .fire2::after {
+            border: rgba(255, 100, 120, 0.6) dotted;
+            box-shadow: 0 0 15px 8px rgba(255, 100, 120, 0.5);
+        }
+
+        .fire3::after {
+            border: rgba(100, 120, 255, 0.6) dotted;
+            box-shadow: 0 0 15px 8px rgba(100, 120, 255, 0.5);
+        }
+
+        .x10 {
+            animation: x10Ani 10s 1.8s ease infinite, f1Ani 10s 2s ease infinite;
+        }
+
+        .x11 {
+            animation: x11Ani 10s 2.2s ease infinite, f1Ani 10s 2.2s ease infinite;
+        }
+
+        .x12 {
+            animation: x12Ani 10s 2.8s ease infinite, f1Ani 10s 2.8s ease infinite;
+        }
+
+        .x13 {
+            animation: x13Ani 10s 3.3s ease infinite, f1Ani 10s 2s ease infinite;
+        }
+
+        .x14 {
+            animation: x14Ani 10s 4s ease infinite, f1Ani 10s 2s ease infinite;
+        }
+
+        .x15 {
+            animation: x15Ani 10s 4.8s ease infinite, f1Ani 10s 2s ease infinite;
+        }
+
+        .x16 {
+            animation: x16Ani 10s 7.8s linear infinite, f1Ani 10s 2s ease infinite;
+        }
+
+        .x20 {
+            animation: x20Ani 10s 2.3s ease infinite, f2Ani 10s 2.3s ease infinite;
+        }
+
+        .x21 {
+            animation: x21Ani 10s 2.7s ease infinite, f2Ani 10s 2.7s ease infinite;
+        }
+
+        .x22 {
+            animation: x22Ani 10s 3.3s ease infinite, f2Ani 10s 2.3s ease infinite;
+        }
+
+        .x23 {
+            animation: x23Ani 10s 3.8s ease infinite, f2Ani 10s 2.3s ease infinite;
+        }
+
+        .x24 {
+            animation: x24Ani 10s 4.5s ease infinite, f2Ani 10s 2.3s ease infinite;
+        }
+
+        .x25 {
+            animation: x25Ani 10s 5.3s ease infinite, f2Ani 10s 2.3s ease infinite;
+        }
+
+        .x26 {
+            animation: x26Ani 10s 8.3s linear infinite, f2Ani 10s 2.3s ease infinite;
+        }
+
+        .x30 {
+            animation: x30Ani 10s 4s linear infinite;
+        }
+
+        .x31 {
+            animation: x31Ani 10s 4.5s linear infinite;
+        }
+
+        .x32 {
+            animation: x32Ani 10s 5s linear infinite;
+        }
+
+        .x33 {
+            animation: x33Ani 10s 5.5s linear infinite;
+        }
+
+        .x34 {
+            animation: x34Ani 10s 6s linear infinite;
+        }
+
+        .x35 {
+            animation: x35Ani 10s 6.5s linear infinite;
+        }
+
+        .x36 {
+            animation: x36Ani 10s 7s linear infinite;
+        }
+
+        .x37 {
+            animation: x37Ani 10s 7.5s linear infinite;
+        }
+
+        @keyframes f1Ani {
+
+            15%,
+            100% {
+                top: -4%;
+                left: 45%;
+            }
+        }
+
+        @keyframes f2Ani {
+
+            15%,
+            100% {
+                top: 8%;
+                left: 3%;
+            }
+        }
+
+        @keyframes x10Ani {
+
+            77%,
+            82% {
+                transform: scale(1);
+            }
+
+            82%,
+            100% {
+                visibility: hidden;
+            }
+        }
+
+        @keyframes x11Ani {
+
+            70%,
+            78% {
+                transform: scale(0.55);
+            }
+
+            78%,
+            100% {
+                visibility: hidden;
+            }
+        }
+
+        @keyframes x12Ani {
+
+            60%,
+            72% {
+                transform: scale(0.3);
+            }
+
+            72%,
+            100% {
+                visibility: hidden;
+            }
+        }
+
+        @keyframes x13Ani {
+
+            58%,
+            67% {
+                transform: scale(0.16);
+            }
+
+            67%,
+            100% {
+                visibility: hidden;
+            }
+        }
+
+        @keyframes x14Ani {
+
+            50%,
+            60% {
+                transform: scale(0.09);
+            }
+
+            60%,
+            100% {
+                visibility: hidden;
+            }
+        }
+
+        @keyframes x15Ani {
+
+            20%,
+            52% {
+                transform: scale(0.04);
+            }
+
+            52%,
+            100% {
+                visibility: hidden;
+            }
+        }
+
+        @keyframes x16Ani {
+
+            15%,
+            22% {
+                transform: scale(1);
+            }
+
+            22%,
+            100% {
+                visibility: hidden;
+            }
+        }
+
+        @keyframes x20Ani {
+            15% {
+                transform: scale(0.05);
+            }
+
+            68%,
+            77% {
+                transform: scale(0.8);
+            }
+
+            77%,
+            100% {
+                visibility: hidden;
+            }
+        }
+
+        @keyframes x21Ani {
+
+            68%,
+            73% {
+                transform: scale(0.48);
+            }
+
+            73%,
+            100% {
+                visibility: hidden;
+            }
+        }
+
+        @keyframes x22Ani {
+
+            60%,
+            67% {
+                transform: scale(0.26);
+            }
+
+            67%,
+            100% {
+                visibility: hidden;
+            }
+        }
+
+        @keyframes x23Ani {
+
+            58%,
+            62% {
+                transform: scale(0.14);
+            }
+
+            62%,
+            100% {
+                visibility: hidden;
+            }
+        }
+
+        @keyframes x24Ani {
+
+            50%,
+            55% {
+                transform: scale(0.7);
+            }
+
+            55%,
+            100% {
+                visibility: hidden;
+            }
+        }
+
+        @keyframes x25Ani {
+
+            16%,
+            47% {
+                transform: scale(0.03);
+            }
+
+            47%,
+            100% {
+                visibility: hidden;
+            }
+        }
+
+        @keyframes x26Ani {
+
+            15%,
+            17% {
+                transform: scale(1);
+            }
+
+            17%,
+            100% {
+                visibility: hidden;
+            }
+        }
+
+        @keyframes x30Ani {
+
+            50%,
+            60% {
+                transform: scale(1.6);
+            }
+
+            60%,
+            100% {
+                visibility: hidden;
+            }
+        }
+
+        @keyframes x31Ani {
+
+            48%,
+            55% {
+                transform: scale(1.1);
+            }
+
+            55%,
+            100% {
+                visibility: hidden;
+            }
+        }
+
+        @keyframes x32Ani {
+
+            44%,
+            50% {
+                transform: scale(0.6);
+            }
+
+            50%,
+            100% {
+                visibility: hidden;
+            }
+        }
+
+        @keyframes x33Ani {
+
+            39%,
+            45% {
+                transform: scale(0.32);
+            }
+
+            45%,
+            100% {
+                visibility: hidden;
+            }
+        }
+
+        @keyframes x34Ani {
+
+            33%,
+            40% {
+                transform: scale(0.16);
+            }
+
+            40%,
+            100% {
+                visibility: hidden;
+            }
+        }
+
+        @keyframes x35Ani {
+
+            28%,
+            35% {
+                transform: scale(0.09);
+            }
+
+            35%,
+            100% {
+                visibility: hidden;
+            }
+        }
+
+        @keyframes x36Ani {
+            30% {
+                transform: scale(0.04);
+            }
+
+            30%,
+            100% {
+                visibility: hidden;
+            }
+        }
+
+        @keyframes x37Ani {
+
+            23%,
+            25% {
+                transform: scale(1.6);
+            }
+
+            25%,
+            100% {
+                visibility: hidden;
+            }
+        }
+
+        @keyframes eleAni {
+
+            0%,
+            7%,
+            10%,
+            100% {
+                top: 50%;
+            }
+
+            5% {
+                top: 47%;
+            }
+
+            8% {
+                top: 49%;
+            }
+        }
+
+        @keyframes eyeAni {
+
+            0%,
+            7%,
+            10%,
+            100% {
+                top: 70%;
+            }
+
+            5% {
+                top: 45%;
+            }
+
+            8% {
+                top: 58%;
+            }
+        }
+
+        @keyframes shAni {
+
+            0%,
+            7%,
+            10%,
+            100% {
+                transform: scale(1);
+            }
+
+            5% {
+                transform: scale(0.8);
+            }
+
+            8% {
+                transform: scale(0.85);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="fireworks">
+        <div class="fire1 x10"></div>
+        <div class="fire1 x11"></div>
+        <div class="fire1 x12"></div>
+        <div class="fire1 x13"></div>
+        <div class="fire1 x14"></div>
+        <div class="fire1 x15"></div>
+        <div class="fire1 x16"></div>
+        <div class="fire2 x20"></div>
+        <div class="fire2 x21"></div>
+        <div class="fire2 x22"></div>
+        <div class="fire2 x23"></div>
+        <div class="fire2 x24"></div>
+        <div class="fire2 x25"></div>
+        <div class="fire2 x26"></div>
+        <div class="fire3 x30"></div>
+        <div class="fire3 x31"></div>
+        <div class="fire3 x32"></div>
+        <div class="fire3 x33"></div>
+        <div class="fire3 x34"></div>
+        <div class="fire3 x35"></div>
+        <div class="fire3 x36"></div>
+        <div class="fire3 x37"></div>
+        <div class="shadow"></div>
+    </div>
+    <div class="elephant">
+        <div class="nose"></div>
+        <div class="head">
+            <div class="eye"></div>
+        </div>
+        <div class="belly"></div>
+        <div class="tail"></div>
+        <div class="leg"></div>
+        <div class="leg legF"></div>
+        <div class="ear"></div>
+    </div>
+</body>
+
+</html>
