@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>臉盲症？</title>
+    <style>
+      body {
+        margin: 0px;
+        height: 100vh;
+      }
+
+      body,
+      #main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      h1 {
+        font-size: 4rem;
+        font-weight: bolder;
+        color: darkblue;
+        text-shadow: 5px 5px 50px #fff;
+      }
+
+      #main div {
+        width: 5rem;
+        height: 3rem;
+        color: steelblue;
+        font-size: 2rem;
+        font-weight: 800;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+          "Lucida Sans Unicode", Verdana, sans-serif;
+        line-height: 3rem;
+        border: 2px solid gray;
+        border-radius: 0.5rem;
+        text-align: center;
+        background-color: floralwhite;
+        box-shadow: 0 0 20px 0 hotpink;
+        cursor: pointer;
+      }
+      #main div:hover {
+        transform: scale(1.2);
+      }
+
+      .order {
+        flex-direction: row-reverse;
+      }
+
+      .format-pre pre {
+        background: #49483e;
+        color: #f7f7f7;
+        padding: 10px;
+        font-size: 14px;
+      }
+
+      .f1-2-2 {
+        width: 150px;
+        height: 150px;
+        background-size: 150px 150px;
+        background-image: url("img/star-150/1-2-2.jpg") !important;
+      }
+
+      .f1-1-2 {
+        width: 150px;
+        height: 150px;
+        background-size: cover;
+        background-image: url("img/star-150/1-1-2.jpg") !important;
+      }
+
+      .f1-1_120 {
+        width: 120px;
+        height: 120px;
+        background-size: 120px 120px !important;
+        background-image: url("img/star-150/1-1.jpg") !important;
+      }
+
+      .f1-2_120 {
+        width: 120px;
+        height: 120px;
+        background-size: 120px 120px !important;
+        background-image: url("img/star-150/1-2.jpg") !important;
+      }
+
+      .f3-1 {
+        width: 150px;
+        height: 150px;
+        background-size: 150px 150px;
+        background-image: url("img/star-150/3-1.jpg") !important;
+      }
+
+      .f3-2 {
+        width: 150px;
+        height: 150px;
+        background-size: 150px 150px;
+        background-image: url("img/star-150/3-2.jpg") !important;
+      }
+
+      .fa1-2_120 {
+        width: 120px;
+        height: 120px;
+        background-size: 120px 120px !important;
+        background-image: url("img/star-150/a1-2.jpg") !important;
+      }
+
+      .f2-1 {
+        width: 150px;
+        height: 150px;
+        background-size: 150px 150px;
+        background-image: url("img/star-150/2-1.png") !important;
+      }
+
+      .f2-2 {
+        width: 150px;
+        height: 150px;
+        background-size: 150px 150px;
+        background-image: url("img/star-150/2-2.jpg") !important;
+      }
+
+      .f5-1_120 {
+        width: 120px;
+        height: 120px;
+        background-size: 120px 120px !important;
+        background-image: url("img/star-150/5-1-3.jpg") !important;
+      }
+
+      .f5-2_120 {
+        width: 120px;
+        height: 120px;
+        background-size: 120px 120px !important;
+        background-image: url("img/star-150/5-2.jpg") !important;
+      }
+
+      .f5-2-2_120 {
+        width: 120px;
+        height: 120px;
+        background-size: 120px 120px !important;
+        background-image: url("img/star-150/5-2-2.jpg") !important;
+      }
+
+      .f4-1_100 {
+        width: 100px;
+        height: 100px;
+        background-size: 100px 100px;
+        background-image: url("img/star-150/4-1-2.jpg") !important;
+      }
+
+      .f4-2_120 {
+        width: 120px;
+        height: 120px;
+        background-size: 120px 120px !important;
+        background-image: url("img/star-150/4-2.png") !important;
+      }
+
+      .f4-3_120 {
+        width: 120px;
+        height: 120px;
+        background-size: 120px 120px !important;
+        background-image: url("img/star-150/4-3.jpg") !important;
+      }
+
+      .f4-4_120 {
+        width: 120px;
+        height: 120px;
+        background-size: 120px 120px !important;
+        background-image: url("img/star-150/4-4.jpg") !important;
+      }
+
+      @media (max-width: 762px) {
+        h1 { font-size: 2.8rem;}
+      }
+    </style>
+    <script src="plugin/jquery-3.5.1.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.js"></script> -->
+    <script src="plugin/typed/lib/typed.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.13.0/sweetalert2.all.js"></script> -->
+    <script src="plugin/swal2-package/dist/sweetalert2.all.js"></script>
+  </head>
+
+  <body>
+    <div id="main">
+      <h1></h1>
+      <div></div>
+    </div>
+    <script>
+      function initial() {
+        $("#main").show();
+        $("h1").text("明星臉大考驗!?");
+        $("#main div").text("GO");
+        document.body.style.backgroundImage = "url('img/duoliang.jpg')";
+        $("#main div").click(() => {
+          $("#main").hide();
+          setName();
+        });
+      }
+
+      initial();
+
+      function setName() {
+        Swal.fire({
+          title: "Hi~ 來者是客，請教大名?",
+          input: "text",
+          inputValue: "老司機",
+          showLoaderOnConfirm: true,
+          confirmButtonText: "就這樣",
+          cancelButtonText: "你管我",
+          showCancelButton: true,
+          allowOutsideClick: false,
+        }).then((re) => {
+          if (re.dismiss === "cancel") {
+            name = "神秘客";
+            Swal.fire({
+              html: '<span class="text"></span>',
+              title: `有什麼難言之隱?`,
+              onOpen: () => {
+                options = {
+                  strings: [`既然你這麼低調... 那就請${name}直接開始挑戰吧!`],
+                  typeSpeed: 40,
+                  startDelay: 300,
+                };
+                typed = new Typed(".text", options);
+              },
+              allowOutsideClick: false,
+              confirmButtonText: "Go!",
+              imageUrl: `img/meme/used/6301aeedf2c53a09bf2108251b1e4da2.jpg`,
+              imageHeight: 300,
+            }).then(start);
+          } else {
+            name = re.value;
+            Swal.fire({
+              html: '<span class="text"></span>',
+              title: `就知道你專業~`,
+              onOpen: () => {
+                options = {
+                  strings: [`歡迎${name}開始進行臉盲大挑戰！`],
+                  typeSpeed: 40,
+                  startDelay: 300,
+                };
+                typed = new Typed(".text", options);
+              },
+              text: "",
+              confirmButtonText: "發車囉！",
+              allowOutsideClick: false,
+              imageUrl: "img/meme/used/50444d1af3ac0397546b60a776f3a579.jpg",
+              imageHeight: 300,
+            }).then(start);
+          }
+        });
+      }
+
+      function start() {
+        let end = null;
+        Swal.fire({
+          // 1st Question - Confirm + Cancel
+          title: `Hi! ${name}`,
+          text: "底下哪位是志玲姐姐?",
+          confirmButtonText: "",
+          cancelButtonText: "",
+          showCancelButton: true,
+          reverseButtons: true, // swap button position
+          allowOutsideClick: false,
+          customClass: {
+            cancelButton: "f1-2-2",
+            confirmButton: "f1-1-2",
+          },
+          imageUrl: "img/meme/used/unnamed.jpg",
+          imageHeight: 300,
+        }).then((re) => {
+          if (re.dismiss === "cancel") {
+            // 1st Cancel
+            Swal.fire({
+              title: "波多野結衣",
+              text: "她是志玲姐姐在另一個世界的分身...擦擦眼鏡再試一次吧!",
+              confirmButtonText: "第一次就掰掰啦~",
+              allowOutsideClick: false,
+              imageUrl: "img/meme/used/5b780abd36def94d2cc0c6feab2201f3.jpg",
+              imageHeight: 300,
+            }).then(() => {
+              setTimeout(initial, 300);
+            });
+          } else {
+            // 1st Confirm
+            Swal.fire({
+              title: `恭喜${name}挑戰成功！`,
+              text: `嘿嘿...再來~ 再來~ 繼續往下看`,
+              confirmButtonText: "GO~",
+              allowOutsideClick: false,
+              imageUrl: "img/meme/used/537a7e592574b3c9190a59d535005eaa.jpg",
+              imageHeight: 300,
+            }).then(() => {
+              Swal.fire({
+                // 2nd Question - Confirm + Cancel + Deny
+                title: `林志玲？`,
+                text: "這題還是志玲姐姐，找出她在哪裡吧~",
+                confirmButtonText: "",
+                cancelButtonText: "",
+                denyButtonText: "",
+                showCancelButton: true,
+                showDenyButton: true,
+                allowOutsideClick: false,
+                customClass: {
+                  confirmButton: "f1-1_120",
+                  cancelButton: "f1-2_120",
+                  denyButton: "fa1-2_120",
+                },
+                imageUrl: "img/meme/used/keke.jpeg",
+                imageHeight: 300,
+              }).then((re) => {
+                if (re.dismiss === "cancel") {
+                  // 2nd Cancel
+                  Swal.fire({
+                    title: `你比較喜歡暗黑版的林志玲厚`,
+                    confirmButtonText: "被你花現惹...",
+                    cancelButtonText: "咩宋，不玩了",
+                    showCancelButton: true,
+                    allowOutsideClick: false,
+                    imageUrl: "img/meme/used/448a-hiqtcan1156580.jpg",
+                    imageHeight: 300,
+                  }).then((re) => {
+                    // initial + close
+                    if (re.dismiss === "cancel") {
+                      window.close();
+                    } else {
+                      setTimeout(initial, 300);
+                    }
+                    setTimeout(initial, 300);
+                  });
+                } else if (re.isConfirmed) {
+                  // 2nd Confirm
+                  console.log("con2");
+                  Swal.fire({
+                    title: "臉盲機率降低20%了~",
+                    text: `看來${name}可能是志玲姐姐小粉絲，我們換個人試試`,
+                    confirmButtonText: "來吧！",
+                    cancelButtonText: "我想再看看志玲姐姐...從頭再來",
+                    showCancelButton: true,
+                    allowOutsideClick: false,
+                    imageUrl:
+                      "img/meme/used/3388237a24a6938abd3c166143a8aa1c.jpg",
+                    imageHeight: 300,
+                  }).then((re) => {
+                    if (re.dismiss === "cancel") {
+                      setTimeout(initial, 300);
+                    } else {
+                      Swal.fire({
+                        // 3rd Question - Confirm + Cancel
+                        title: "情歌天后梁靜茹",
+                        text: "猜一猜~ 猜一猜~ 左邊還是右邊呢？",
+                        confirmButtonText: "",
+                        cancelButtonText: "",
+                        showCancelButton: true,
+                        reverseButtons: false,
+                        allowOutsideClick: false,
+                        customClass: {
+                          confirmButton: "f3-1",
+                          cancelButton: "f3-2",
+                        },
+                        imageUrl: "img/meme/used/unnamed.jpg",
+                        imageHeight: 300,
+                      }).then((re) => {
+                        if (re.dismiss === "cancel") {
+                          Swal.fire({
+                            // 3rd Cancel
+                            title: "你比較喜歡暗黑版歌后？",
+                            text: "這位是石原莉奈，你可能在某顆硬碟見過她...",
+                            confirmButtonText: "再試一次",
+                            allowOutsideClick: false,
+                            imageUrl:
+                              "img/meme/used/76b27e652e6f00d81d8a19cf7b196e0b.jpg",
+                            imageHeight: 300,
+                          }).then(initial);
+                        } else {
+                          Swal.fire({
+                            // 3rd Confirm
+                            title: "挑戰成功x3",
+                            html: `這麼像都逃不過${name}你的火眼金睛，<br>我們接著挑戰下一關吧！`,
+                            confirmButtonText: "火車繼續向前衝",
+                            allowOutsideClick: false,
+                            imageUrl:
+                              "img/meme/used/4a4513c6d60ddee5ddba7a2d4e08f37a.jpg",
+                            imageHeight: 300,
+                          }).then(() => {
+                            Swal.fire({
+                              // 4th Question - Confirm + Cancel
+                              title: "金馬影后李心潔",
+                              text: "下面3張短髮俏麗妞兒，請問哪張是李心潔呢？",
+                              confirmButtonText: "",
+                              cancelButtonText: "",
+                              denyButtonText: "", // Answer here!!!!!
+                              showCancelButton: true,
+                              showDenyButton: true,
+                              reverseButtons: false,
+                              allowOutsideClick: false,
+                              customClass: {
+                                confirmButton: "f5-2-2_120",
+                                cancelButton: "f5-2_120",
+                                denyButton: "f5-1_120",
+                              },
+                              imageUrl:
+                                "img/meme/used/9b188868f39108f3a074ff80c561530d.jpg",
+                              imageHeight: 300,
+                            }).then((re) => {
+                              if (re.dismiss === "cancel") {
+                                console.log("X4");
+                                Swal.fire({
+                                  // 4th Cancel
+                                  title: "高梨あゆみ 高梨步",
+                                  html:
+                                    "你比較喜歡她嗎？這位是 高梨あゆみ(高梨步)<br>接著該怎麼做你知道的...",
+                                  confirmButtonText: "我要去找番號了，掰掰",
+                                  ccancelButtonText: "回頭重新挑戰",
+                                  showCancelButton: true,
+                                  allowOutsideClick: false,
+                                  imageUrl:
+                                    "img/meme/used/958ce9be1c6ea1da6149ef74cc56af12.jpg",
+                                  imageHeight: 300,
+                                }).then((re) => {
+                                  if (re.isConfirmed) {
+                                    window.close();
+                                  } else {
+                                    initial();
+                                  }
+                                });
+                              } else if (re.isConfirmed) {
+                                console.log("X4");
+                                Swal.fire({
+                                  // 4th Confirm
+                                  title: "高梨あゆみ 高梨步",
+                                  html:
+                                    "這位是 高梨あゆみ(高梨步)啦~<br>喜歡她就去google看看吧",
+                                  confirmButtonText: "我累了了...掰掰",
+                                  cancelButtonText: "回頭重新挑戰",
+                                  showCancelButton: true,
+                                  allowOutsideClick: false,
+                                  imageUrl:
+                                    "img/meme/used/958ce9be1c6ea1da6149ef74cc56af12.jpg",
+                                  imageHeight: 300,
+                                }).then((re) => {
+                                  if (re.isConfirmed) {
+                                    window.close();
+                                  } else {
+                                    initial();
+                                  }
+                                });
+                              } else {
+                                console.log("OOO");
+                                Swal.fire({
+                                  // 4th Deny ----- Answer!!!!!
+                                  title: "闖關成功~",
+                                  html:
+                                    "恭喜你臉盲症機率只剩20%<br>繼續挑戰嗎？",
+                                  confirmButtonText: "Of Course~",
+                                  cancelButtonText: "我想重新開始耶",
+                                  denyButtonText: "心冷...掰掰",
+                                  showCancelButton: true,
+                                  allowOutsideClick: false,
+                                  imageUrl:
+                                    "img/meme/used/a5715f6142abe601b1be6aecdda6c658.jpg",
+                                  imageHeight: 300,
+                                }).then((re) => {
+                                  if (re.isDenied) {
+                                    window.close();
+                                  } else if (re.isConfirmed) {
+                                    Swal.fire({
+                                      // 5th Question - Confirm + Cancel
+                                      title: "白歆惠",
+                                      text: "曾經的凱渥名模，左邊還是右邊呢？",
+                                      confirmButtonText: "",
+                                      cancelButtonText: "",
+                                      showCancelButton: true,
+                                      reverseButtons: true,
+                                      allowOutsideClick: false,
+                                      customClass: {
+                                        confirmButton: "f2-1",
+                                        cancelButton: "f2-2",
+                                      },
+                                      imageUrl: "img/meme/used/unnamed.jpg",
+                                      imageHeight: 300,
+                                    }).then((re) => {
+                                      if (re.isConfirmed) {
+                                        Swal.fire({
+                                          // 5th Confirm
+                                          title: "恭喜你過五關了！！",
+                                          html:
+                                            "看來你臉盲症的機率幾乎是0<br>我們火車到站了哦！",
+                                          confirmButtonText:
+                                            "要試試隱藏關卡嗎？",
+                                          cancelButtonText: "我想重新上車",
+                                          denyButtonText: "終於結束了...",
+                                          showCancelButton: true,
+                                          showDenyButton: true,
+                                          allowOutsideClick: false,
+                                          // customClass: {
+                                          //   confirmButton: 'f2-1',
+                                          //   cancelButton: 'f2-2',
+                                          // },
+                                          imageUrl:
+                                            "img/meme/used/37f4a023bf2085cde2715038dc19e547.jpg",
+                                          imageHeight: 300,
+                                        }).then((re) => {
+                                          if (re.isDenied) {
+                                            window.close();
+                                          } else if (re.isConfirmed) {
+                                            Swal.fire({
+                                              // 6th Question - Confirm + Cancel + Deny
+                                              title: `郭雪芙`,
+                                              text: `Yamalubu~ lubu~ lubu~ 到底哪一bu?`,
+                                              confirmButtonText: "",
+                                              cancelButtonText: "",
+                                              denyButtonText: "",
+                                              showCancelButton: true,
+                                              showDenyButton: true,
+                                              allowOutsideClick: false,
+                                              customClass: {
+                                                confirmButton: "f4-2_120",
+                                                cancelButton: "f4-3_120",
+                                                denyButton: "f4-4_120",
+                                              },
+                                              imageUrl:
+                                                "img/meme/used/cf4141d646c73d2f09fa2bc7cace6024.gif",
+                                              imageHeight: 300,
+                                            }).then((re) => {
+                                              if (re.isConfirmed) {
+                                                Swal.fire({
+                                                  // 6th Confirm
+                                                  title: `葵夢`,
+                                                  html: `哈哈哈~ 開個小玩笑，<br>剛剛那位是葵夢，現在才是郭雪芙啦`,
+                                                  confirmButtonText:
+                                                    "難怪差這麼多...",
+                                                  allowOutsideClick: false,
+                                                  imageUrl:
+                                                    "img/meme/used/f5672c78a388461426cfad690f430fe4.jpg",
+                                                  imageHeight: 300,
+                                                });
+                                              } else if (re.isDenied) {
+                                                Swal.fire({
+                                                  // 6th Cancel
+                                                  title: `小岩伊都`,
+                                                  html: `哈哈哈~ 開個小玩笑，<br>這位是清新的小岩伊都，現在才是郭雪芙啦`,
+                                                  confirmButtonText:
+                                                    "我就知道...",
+                                                  allowOutsideClick: false,
+                                                  imageUrl:
+                                                    "img/meme/used/1378c3e5755b4a8a9e5b25c3ce04362a.jpg",
+                                                  imageHeight: 300,
+                                                });
+                                              } else {
+                                                Swal.fire({
+                                                  // 6th Deny
+                                                  title: `水野朝陽`,
+                                                  html: `哈哈哈~ 開個小玩笑，<br>這位是水野朝陽，現在才是郭雪芙啦`,
+                                                  confirmButtonText:
+                                                    "還我牛...",
+                                                  allowOutsideClick: false,
+                                                  imageUrl:
+                                                    "img/meme/used/818c9b9fbb460f0686348d6b452e0672.jpg",
+                                                  imageHeight: 300,
+                                                });
+                                              }
+                                            });
+                                          } else {
+                                            initial();
+                                          }
+                                        });
+                                      } else {
+                                        Swal.fire({
+                                          // 5th Cancel
+                                          title: "下車囉...",
+                                          html: `${name}你的旅程到此為止<br>過4關也是不容易了啦~`,
+                                          confirmButtonText: "請讓我重新上車",
+                                          cancelButtonText: "算了，來睏...",
+                                          showCancelButton: true,
+                                          allowOutsideClick: false,
+                                          imageUrl: "img/meme/unnamed.jpg",
+                                          imageHeight: 300,
+                                        }).then((re) => {
+                                          if (re.isConfirmed) {
+                                            initial();
+                                          } else {
+                                            window.close();
+                                          }
+                                        });
+                                      }
+                                    });
+                                  } else {
+                                    initial();
+                                  }
+                                });
+                              }
+                            });
+                          });
+                        }
+                      });
+                    }
+                  });
+                } else {
+                  // 2nd Deny
+                  Swal.fire({
+                    title: `哇丟西嘎意這味啦~`,
+                    confirmButtonText: "再試一次",
+                    cancelButtonText: "咩宋，不玩了",
+                    showCancelButton: true,
+                    allowOutsideClick: false,
+                    imageUrl: "img/meme/448a-hiqtcan1156580.jpg",
+                    imageHeight: 300,
+                  }).then((re) => {
+                    // inital + close
+                    if (re.dismiss === "cancel") {
+                      window.close();
+                    } else {
+                      setTimeout(initial, 300);
+                    }
+                  });
+                }
+              });
+            });
+          }
+        });
+      }
+
+      function finish(e) {
+        if (!e) {
+          window.close();
+        } else {
+        }
+      }
+    </script>
+  </body>
+</html>
